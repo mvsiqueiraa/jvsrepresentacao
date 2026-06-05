@@ -375,14 +375,55 @@
         animation: scrollCueEnter 900ms ease-out 1700ms forwards;
       }
 
-      .brands-section {
+      .reveal-section {
         opacity: 0;
-        animation: pageCascadeIn 1000ms ease-out 1900ms forwards;
+        transform: translateY(28px);
+        transition:
+          opacity 900ms ease,
+          transform 900ms ease;
       }
 
-      .about-section {
+      .reveal-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-section .brands-header,
+      .reveal-section .brands-grid,
+      .reveal-section .about-content,
+      .reveal-section .about-panel,
+      .reveal-section .contact-content,
+      .reveal-section .contact-actions,
+      .reveal-section .contact-benefits,
+      .reveal-section .contact-panel {
         opacity: 0;
-        animation: pageCascadeIn 1000ms ease-out 1650ms forwards;
+        transform: translateY(18px);
+        transition:
+          opacity 850ms ease,
+          transform 850ms ease;
+      }
+
+      .reveal-section.is-visible .brands-header,
+      .reveal-section.is-visible .about-content,
+      .reveal-section.is-visible .contact-content {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 120ms;
+      }
+
+      .reveal-section.is-visible .brands-grid,
+      .reveal-section.is-visible .about-panel,
+      .reveal-section.is-visible .contact-actions {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 260ms;
+      }
+
+      .reveal-section.is-visible .contact-benefits,
+      .reveal-section.is-visible .contact-panel {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 420ms;
       }
 
       @keyframes pageCascadeIn {
@@ -1012,8 +1053,6 @@
       }
 
       .contact-content {
-        opacity: 0;
-        animation: pageCascadeIn 1000ms ease-out 2200ms forwards;
       }
 
       .contact-tag {
@@ -1059,8 +1098,6 @@
         flex-wrap: wrap;
         gap: 16px;
         margin-top: 40px;
-        opacity: 0;
-        animation: pageCascadeIn 900ms ease-out 2500ms forwards;
       }
 
       .contact-button {
@@ -1109,8 +1146,6 @@
         flex-wrap: wrap;
         gap: 14px;
         margin-top: 46px;
-        opacity: 0;
-        animation: pageCascadeIn 900ms ease-out 2700ms forwards;
       }
 
       .contact-benefits span {
@@ -1143,20 +1178,6 @@
         border: 1px solid rgba(255, 255, 255, 0.72);
         border-radius: 16px;
         box-shadow: 0 30px 76px rgba(0, 0, 0, 0.28);
-        opacity: 0;
-        animation: contactPanelEnter 1100ms cubic-bezier(0.18, 0.84, 0.24, 1) 2400ms forwards;
-      }
-
-      @keyframes contactPanelEnter {
-        from {
-          opacity: 0;
-          transform: translateX(34px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
       }
 
       .contact-panel h3 {
@@ -2514,5 +2535,19 @@
         .catalog-item {
           opacity: 1;
           animation: none;
+        }
+
+        .reveal-section,
+        .reveal-section .brands-header,
+        .reveal-section .brands-grid,
+        .reveal-section .about-content,
+        .reveal-section .about-panel,
+        .reveal-section .contact-content,
+        .reveal-section .contact-actions,
+        .reveal-section .contact-benefits,
+        .reveal-section .contact-panel {
+          opacity: 1;
+          transform: none;
+          transition: none;
         }
       }
