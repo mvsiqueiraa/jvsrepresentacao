@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/auth.js"></script>
   </head>
   <body>
     <header class="site-header" aria-label="Cabeçalho principal">
@@ -28,10 +29,16 @@
           <a href="index.html#quem-somos">Quem Somos</a>
           <a href="catalogos.html" aria-current="page">Catálogo</a>
           <a href="index.html#contato">Contato</a>
-          <a href="catalogos.html">Área do Cliente</a>
+          <a href="login.html">Área do Cliente</a>
         </nav>
 
-        <a class="header-button" href="index.html#contato">Fale conosco</a>
+        <div class="header-actions">
+          <div class="client-status" data-client-status hidden>
+            <span>Logado</span>
+            <button type="button" data-client-logout>Sair</button>
+          </div>
+          <a class="header-button" href="index.html#contato">Fale conosco</a>
+        </div>
       </div>
     </header>
 
@@ -59,6 +66,8 @@
             <button class="catalog-filter-button" type="button" data-filter="vonder">Vonder</button>
             <button class="catalog-filter-button" type="button" data-filter="viqua">Viqua</button>
             <button class="catalog-filter-button" type="button" data-filter="aeroflex">Aeroflex</button>
+            <button class="catalog-filter-button" type="button" data-filter="elleve">Elleve</button>
+            <button class="catalog-filter-button" type="button" data-filter="topmax">Top-Max</button>
           </div>
 
           <div class="catalog-grid">
@@ -160,11 +169,30 @@
               <h2>Catálogo Alimentar</h2>
               <a href="https://drive.google.com/file/d/10xYYKtHrrOXIvXk5Vho29lDEd-BuMeBW/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
             </article>
+
+            <article class="catalog-item" data-brand="elleve">
+              <span class="catalog-brand">Elleve</span>
+              <div class="catalog-logo">
+                <img src="assets/logo-elleve.png" alt="Elleve" />
+              </div>
+              <h2>Catálogo: Escoamento Inteligente</h2>
+              <a href="https://drive.google.com/file/d/1dIFolQQjMMPhucGD8rouxDL62WKASPch/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
+            </article>
+
+            <article class="catalog-item" data-brand="topmax">
+              <span class="catalog-brand">Top-Max</span>
+              <div class="catalog-logo">
+                <img src="assets/logo-topmax.png" alt="Top-Max" />
+              </div>
+              <h2>Catálogo: Ralos Modulares</h2>
+              <a href="https://drive.google.com/file/d/1dIFolQQjMMPhucGD8rouxDL62WKASPch/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
+            </article>
           </div>
         </div>
       </section>
     </main>
 
+    <script src="js/client-session.js"></script>
     <script src="js/catalogos.js"></script>
   </body>
 </html>

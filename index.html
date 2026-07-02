@@ -28,12 +28,18 @@
           <a href="#quem-somos">Quem Somos</a>
           <a href="catalogos.html">Catálogo</a>
           <a href="#contato">Contato</a>
-          <a href="catalogos.html">Área do Cliente</a>
+          <a href="login.html">Área do Cliente</a>
         </nav>
 
-        <a class="header-button" href="#contato">
-          Fale conosco
-        </a>
+        <div class="header-actions">
+          <div class="client-status" data-client-status hidden>
+            <span>Logado</span>
+            <button type="button" data-client-logout>Sair</button>
+          </div>
+          <a class="header-button" href="#contato">
+            Fale conosco
+          </a>
+        </div>
       </div>
     </header>
 
@@ -80,6 +86,9 @@
             <span>Vonder</span>
             <span>Viqua</span>
             <span>Aeroflex</span>
+            <span>Elleve</span>
+            <span>Novii</span>
+            <span>Top-Max</span>
           </div>
         </article>
 
@@ -147,27 +156,36 @@
         <span class="brands-swipe-hint" aria-hidden="true">Arraste para ver</span>
 
         <div class="brands-grid" aria-label="Lista de marcas representadas">
-          <article class="brand-logo-card">
+          <a class="brand-logo-card" href="catalogos.html?brand=krona" aria-label="Ver catálogos Krona">
             <img src="assets/logo-krona.svg" alt="Krona" />
-          </article>
-          <article class="brand-logo-card">
-            <img src="assets/logo-soprano.svg" alt="Soprano" />
-          </article>
-          <article class="brand-logo-card">
-            <img src="assets/logo-iberica.svg" alt="Ibérica" />
-          </article>
-          <article class="brand-logo-card">
-            <img src="assets/logo-ciser.svg" alt="Ciser" />
-          </article>
-          <article class="brand-logo-card">
-            <img src="assets/logo-vonder.svg" alt="Vonder" />
-          </article>
-          <article class="brand-logo-card">
+          </a>
+          <a class="brand-logo-card" href="catalogos.html?brand=soprano" aria-label="Ver catálogos Soprano">
+            <img class="brand-logo-large" src="assets/logo-soprano.svg" alt="Soprano" />
+          </a>
+          <a class="brand-logo-card" href="catalogos.html?brand=iberica" aria-label="Ver catálogos Ibérica">
+            <img class="brand-logo-large" src="assets/logo-iberica.svg" alt="Ibérica" />
+          </a>
+          <a class="brand-logo-card" href="catalogos.html?brand=ciser" aria-label="Ver catálogos Ciser">
+            <img class="brand-logo-large" src="assets/logo-ciser.svg" alt="Ciser" />
+          </a>
+          <a class="brand-logo-card" href="catalogos.html?brand=vonder" aria-label="Ver catálogos Vonder">
+            <img class="brand-logo-large" src="assets/logo-vonder.svg" alt="Vonder" />
+          </a>
+          <a class="brand-logo-card" href="catalogos.html?brand=viqua" aria-label="Ver catálogos Viqua">
             <img src="assets/logo-viqua.svg" alt="Viqua" />
-          </article>
-          <article class="brand-logo-card">
-            <img src="assets/logo-aeroflex.svg" alt="Aeroflex" />
-          </article>
+          </a>
+          <a class="brand-logo-card" href="catalogos.html?brand=aeroflex" aria-label="Ver catálogos Aeroflex">
+            <img class="brand-logo-large" src="assets/logo-aeroflex.svg" alt="Aeroflex" />
+          </a>
+          <a class="brand-logo-card" href="catalogos.html?brand=elleve" aria-label="Ver catálogos Elleve">
+            <img src="assets/logo-elleve.png" alt="Elleve" />
+          </a>
+          <a class="brand-logo-card" href="catalogos.html" aria-label="Ver catálogos disponíveis">
+            <img src="assets/logo-novii.png" alt="Novii" />
+          </a>
+          <a class="brand-logo-card" href="catalogos.html?brand=topmax" aria-label="Ver catálogos Top-Max">
+            <img src="assets/logo-topmax.png" alt="Top-Max" />
+          </a>
         </div>
       </div>
 
@@ -262,11 +280,6 @@
             Contato comercial
           </span>
           <h2 class="contact-title">Fale com a equipe da J V S Representações</h2>
-          <p>
-            Atendimento para lojistas, atacadistas, distribuidores, construtoras e
-            empresas da região Oeste do Pará. Converse com nossa equipe para acessar
-            catálogos, tirar dúvidas comerciais e conhecer as marcas representadas.
-          </p>
 
           <div class="contact-actions">
             <a class="contact-button contact-button-primary" href="https://wa.me/5593988156714" target="_blank" rel="noopener">
@@ -353,6 +366,7 @@
     <script>
       lucide.createIcons();
     </script>
+    <script src="js/client-session.js"></script>
     <script src="js/reveal.js"></script>
   </body>
 </html>
