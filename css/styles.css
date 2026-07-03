@@ -198,7 +198,9 @@
 
       .hero {
         position: relative;
-        display: flex;
+        display: grid;
+        grid-template-columns: minmax(0, 620px) minmax(0, 1fr);
+        gap: clamp(24px, 3vw, 54px);
         align-items: center;
         min-height: 90vh;
         overflow: hidden;
@@ -246,17 +248,23 @@
       .hero-content {
         position: relative;
         z-index: 4;
+        grid-column: 1;
+        grid-row: 1;
         max-width: 620px;
         opacity: 0;
         animation: pageCascadeIn 1050ms ease-out 360ms forwards;
       }
 
       .hero-person {
-        position: absolute;
-        right: 19.5%;
+        position: relative;
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: start;
+        align-self: end;
+        right: auto;
         bottom: 96px;
         z-index: 3;
-        width: clamp(350px, 30.5vw, 500px);
+        width: clamp(340px, 26vw, 430px);
         aspect-ratio: 1;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.78);
@@ -311,13 +319,18 @@
       }
 
       .hero-cards {
-        position: absolute;
-        top: 136px;
-        right: 5.5%;
+        position: relative;
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
+        top: 12px;
+        right: auto;
         z-index: 5;
         display: grid;
         gap: 13px;
         width: 306px;
+        transform: translateX(clamp(34px, 5.5vw, 96px));
       }
 
       .hero-card {
@@ -1924,6 +1937,8 @@
 
       @media (max-width: 1480px) and (min-width: 981px) {
         .hero {
+          grid-template-columns: minmax(0, 500px) minmax(0, 1fr);
+          gap: 24px;
           padding-right: 6%;
           padding-left: 6%;
         }
@@ -1942,14 +1957,73 @@
         }
 
         .hero-person {
-          right: 10%;
           bottom: 88px;
-          width: clamp(350px, 32vw, 420px);
+          width: clamp(340px, 28vw, 390px);
         }
 
         .hero-cards {
-          right: 24px;
+          top: 10px;
           width: 292px;
+        }
+      }
+
+      @media (max-width: 1320px) and (min-width: 641px) {
+        .header-inner {
+          flex-wrap: wrap;
+          gap: 14px;
+          padding: 16px 0;
+        }
+
+        .main-nav {
+          order: 3;
+          justify-content: flex-start;
+          width: 100%;
+          overflow-x: auto;
+          border-radius: 14px;
+        }
+
+        .main-nav a {
+          flex: 0 0 auto;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          min-height: auto;
+          padding-top: 132px;
+          padding-bottom: 76px;
+        }
+
+        .hero-content {
+          grid-column: 1;
+          grid-row: 1;
+          max-width: 640px;
+        }
+
+        .hero-person {
+          grid-column: 1;
+          grid-row: 2;
+          justify-self: center;
+          bottom: auto;
+          width: min(390px, 58vw);
+          margin-top: 2px;
+          opacity: 0.95;
+        }
+
+        .hero-cards {
+          grid-column: 1;
+          grid-row: 3;
+          justify-self: center;
+          top: auto;
+          width: min(100%, 560px);
+          transform: none;
+        }
+
+        .brands-card,
+        .region-card,
+        .partner-strip {
+          --card-offset-x: 0px;
+          transform: translateX(var(--card-offset-x));
         }
       }
 
@@ -1973,7 +2047,9 @@
         }
 
         .hero {
-          padding: 160px 24px 80px;
+          grid-template-columns: 1fr;
+          gap: 18px;
+          padding: 132px 24px 76px;
         }
 
         .brands-section {
@@ -2020,30 +2096,37 @@
         }
 
         .hero-content {
+          grid-column: 1;
+          grid-row: 1;
           max-width: 560px;
         }
 
         .hero-person {
-          right: -2%;
-          bottom: 76px;
-          width: min(380px, 40vw);
+          grid-column: 1;
+          grid-row: 2;
+          justify-self: center;
+          bottom: auto;
+          width: min(390px, 62vw);
+          margin-top: 2px;
           opacity: 0.9;
         }
 
         .hero-cards {
-          right: 16px;
-          top: 154px;
-          width: min(292px, 40vw);
+          grid-column: 1;
+          grid-row: 3;
+          justify-self: center;
+          top: auto;
+          width: min(100%, 560px);
         }
 
         .brands-card,
         .region-card {
-          --card-offset-x: 14px;
+          --card-offset-x: 0px;
           transform: translateX(var(--card-offset-x));
         }
 
         .partner-strip {
-          --card-offset-x: 22px;
+          --card-offset-x: 0px;
           transform: translateX(var(--card-offset-x));
         }
 
@@ -2291,6 +2374,7 @@
           width: min(100%, 360px);
           margin: 14px auto 0;
           gap: 14px;
+          transform: none;
         }
 
         .catalog-card,
