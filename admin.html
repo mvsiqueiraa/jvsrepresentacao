@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrador | J V S Representações</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo-jvs.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="admin-page">
+    <section class="admin-lock" data-admin-lock>
+      <form class="login-panel admin-lock-panel" data-admin-login-form>
+        <a class="login-logo" href="index.html" aria-label="Voltar para o início">
+          <img src="assets/logo-jvs.svg" alt="J V S Representações" />
+        </a>
+
+        <div class="login-copy">
+          <span class="section-tag">Acesso restrito</span>
+          <h1>Painel administrativo</h1>
+          <p>Digite a senha administrativa para analisar solicitações de cadastro.</p>
+        </div>
+
+        <p class="login-message" data-admin-message hidden></p>
+
+        <label class="login-field">
+          <span>E-mail do administrador</span>
+          <input type="email" name="adminEmail" placeholder="admin@empresa.com" autocomplete="email" required />
+        </label>
+
+        <label class="login-field">
+          <span>Senha do administrador</span>
+          <input type="password" name="adminPassword" placeholder="Digite a senha" autocomplete="current-password" required />
+        </label>
+
+        <button class="login-button" type="submit">Entrar no painel</button>
+      </form>
+    </section>
+
+    <div data-admin-content hidden>
+      <header class="admin-header">
+        <a class="login-logo" href="index.html" aria-label="Voltar para o início">
+          <img src="assets/logo-jvs.svg" alt="J V S Representações" />
+        </a>
+
+        <div>
+          <span class="section-tag">Administrador</span>
+          <h1>Aprovação de clientes</h1>
+          <p>Analise solicitações de acesso aos catálogos digitais.</p>
+        </div>
+
+        <a class="admin-back-link" href="login.html">Voltar ao login</a>
+      </header>
+
+      <main class="admin-shell">
+        <section class="admin-panel" aria-label="Solicitações de cadastro">
+          <div class="admin-panel-header">
+            <h2>Solicitações</h2>
+            <button class="admin-clear-button" type="button" data-clear-rejected>Limpar recusados</button>
+          </div>
+
+          <div class="admin-list" data-admin-list></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
+
