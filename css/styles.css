@@ -2029,6 +2029,16 @@
         border: 1px solid #d6dee8;
       }
 
+      .admin-card-actions button[data-action="pending"] {
+        color: #9f1239;
+        background: rgba(225, 29, 72, 0.06);
+        border: 1px solid rgba(225, 29, 72, 0.18);
+      }
+
+      .admin-card-actions button[data-action="pending"]:hover {
+        background: rgba(225, 29, 72, 0.1);
+      }
+
       .site-footer {
         padding: 18px 8%;
         color: rgba(255, 255, 255, 0.72);
@@ -2904,29 +2914,7 @@
         }
 
         .about-stats {
-          grid-template-columns: 1fr;
-          gap: 10px;
-          margin-top: 22px;
-        }
-
-        .about-stats article {
-          grid-template-columns: 40px minmax(0, 1fr);
-          justify-items: start;
-          align-items: center;
-          min-height: auto;
-          padding: 14px;
-          text-align: left;
-        }
-
-        .about-stats .lucide {
-          grid-row: span 2;
-          width: 36px;
-          height: 36px;
-        }
-
-        .about-stats strong,
-        .about-stats span {
-          justify-self: start;
+          display: none;
         }
 
         .about-panel {

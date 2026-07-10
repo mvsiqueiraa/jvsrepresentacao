@@ -79,6 +79,10 @@ const showAdminPanel = async () => {
 };
 
 const updateClientStatus = async (id, status) => {
+  if (status === "pending" && !window.confirm("Revogar o acesso deste cliente aos catálogos?")) {
+    return;
+  }
+
   const { error } = await supabaseClient
     .from("profiles")
     .update({
@@ -161,7 +165,11 @@ const renderClients = async () => {
                   <button type="button" data-action="approved" data-id="${client.id}">Aprovar</button>
                   <button type="button" data-action="rejected" data-id="${client.id}">Recusar</button>
                 `
-                : `<span class="admin-reviewed-label">Revisado</span>`
+                : client.status === "approved"
+                  ? `
+                    <button type="button" data-action="pending" data-id="${client.id}">Revogar acesso</button>
+                  `
+                  : `<span class="admin-reviewed-label">Revisado</span>`
             }
           </div>
         </article>
