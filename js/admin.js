@@ -7,7 +7,7 @@ const adminMessage = document.querySelector("[data-admin-message]");
 const supabaseClient = window.jvsSupabase;
 
 const statusLabels = {
-  pending: "Pendente",
+  pending: "Sem acesso",
   approved: "Aprovado",
   rejected: "Recusado",
 };
@@ -118,16 +118,16 @@ const renderClients = async () => {
 
   const sortedClients = [...clients].sort((a, b) => {
     if (a.status === b.status) return new Date(b.created_at) - new Date(a.created_at);
-    if (a.status === "pending") return -1;
-    if (b.status === "pending") return 1;
+    if (a.status === "approved") return -1;
+    if (b.status === "approved") return 1;
     return a.status.localeCompare(b.status);
   });
 
   if (!sortedClients.length) {
     adminList.innerHTML = `
       <article class="admin-empty">
-        <h3>Nenhuma solicitação por enquanto</h3>
-        <p>Quando um cliente solicitar cadastro, ele aparecerá aqui para aprovação.</p>
+        <h3>Nenhum cliente cadastrado por enquanto</h3>
+        <p>Quando alguém criar acesso à área de catálogos, aparecerá aqui.</p>
       </article>
     `;
     return;
@@ -138,7 +138,7 @@ const renderClients = async () => {
       (client) => `
         <article class="admin-client-card" data-status="${client.status}">
           <div class="admin-client-main">
-            <span class="admin-status">${statusLabels[client.status] || "Pendente"}</span>
+            <span class="admin-status">${statusLabels[client.status] || "Sem acesso"}</span>
             <h3>${escapeHtml(client.name)}</h3>
             <p>${escapeHtml(client.company)}</p>
           </div>
@@ -162,8 +162,7 @@ const renderClients = async () => {
             ${
               client.status === "pending"
                 ? `
-                  <button type="button" data-action="approved" data-id="${client.id}">Aprovar</button>
-                  <button type="button" data-action="rejected" data-id="${client.id}">Recusar</button>
+                  <button type="button" data-action="approved" data-id="${client.id}">Liberar acesso</button>
                 `
                 : client.status === "approved"
                   ? `

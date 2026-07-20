@@ -4,7 +4,7 @@ create table if not exists public.profiles (
   company text not null default '',
   phone text not null default '',
   email text not null unique,
-  status text not null default 'pending' check (status in ('pending', 'approved', 'rejected')),
+  status text not null default 'approved' check (status in ('pending', 'approved', 'rejected')),
   role text not null default 'client' check (role in ('client', 'admin')),
   created_at timestamptz not null default now(),
   reviewed_at timestamptz
@@ -26,7 +26,7 @@ begin
     coalesce(new.raw_user_meta_data ->> 'name', ''),
     coalesce(new.raw_user_meta_data ->> 'company', ''),
     coalesce(new.raw_user_meta_data ->> 'phone', ''),
-    'pending',
+    'approved',
     'client'
   )
   on conflict (id) do nothing;

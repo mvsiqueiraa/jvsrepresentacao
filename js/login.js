@@ -82,7 +82,7 @@ loginTabs.forEach((tab) => {
 });
 
 if (loginReason === "pending") {
-  showMessage("Seu cadastro ainda está aguardando aprovação do administrador.", "warning");
+  showMessage("Seu acesso aos catálogos está temporariamente bloqueado. Fale com a equipe comercial para revisar.", "warning");
 }
 
 if (loginReason === "rejected") {
@@ -90,7 +90,7 @@ if (loginReason === "rejected") {
 }
 
 if (loginReason === "profile-error") {
-  showMessage("Não foi possível validar seu perfil. Verifique se o cadastro foi aprovado no painel administrativo.", "error");
+  showMessage("Não foi possível validar seu perfil. Tente novamente em instantes.", "error");
 }
 
 passwordToggleButtons.forEach((button) => {
@@ -135,7 +135,7 @@ loginForm?.addEventListener("submit", async (event) => {
 
     if (profile.status === "pending") {
       await supabaseClient.auth.signOut();
-      showMessage("Seu cadastro ainda está aguardando aprovação do administrador.", "warning");
+      showMessage("Seu acesso aos catálogos está temporariamente bloqueado. Fale com a equipe comercial para revisar.", "warning");
       return;
     }
 
@@ -175,7 +175,7 @@ registerForm?.addEventListener("submit", async (event) => {
     return;
   }
 
-  const { error } = await supabaseClient.auth.signUp({
+  const { data, error } = await supabaseClient.auth.signUp({
     email,
     password,
     options: {
@@ -188,14 +188,18 @@ registerForm?.addEventListener("submit", async (event) => {
   });
 
   if (error) {
-    showMessage(error.message || "Não foi possível solicitar o cadastro.", "error");
+    showMessage(error.message || "Não foi possível criar o cadastro.", "error");
     return;
   }
 
-  await supabaseClient.auth.signOut();
+  if (data.session) {
+    window.location.href = loginRedirectTarget;
+    return;
+  }
+
   registerForm.reset();
   showTab("login");
-  showMessage("Cadastro enviado. Aguarde a aprovação do administrador para acessar os catálogos.", "success");
+  showMessage("Cadastro criado. Entre com seu e-mail e senha para acessar os catálogos.", "success");
 });
 
 redirectIfAlreadyLoggedIn();
