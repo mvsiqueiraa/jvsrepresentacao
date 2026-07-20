@@ -109,7 +109,7 @@ const renderClients = async () => {
   if (error) {
     adminList.innerHTML = `
       <article class="admin-empty">
-        <h3>Não foi possível carregar as solicitações</h3>
+        <h3>Não foi possível carregar os cadastros</h3>
         <p>Verifique as políticas do Supabase e tente novamente.</p>
       </article>
     `;

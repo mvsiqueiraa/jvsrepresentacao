@@ -199,7 +199,7 @@ registerForm?.addEventListener("submit", async (event) => {
 
   registerForm.reset();
   showTab("login");
-  showMessage("Cadastro criado. Entre com seu e-mail e senha para acessar os catálogos.", "success");
+  showMessage("Cadastro criado e acesso liberado. Entre com seu e-mail e senha para acessar os catálogos.", "success");
 });
 
 redirectIfAlreadyLoggedIn();
