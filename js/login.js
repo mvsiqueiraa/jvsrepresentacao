@@ -58,6 +58,20 @@ const getProfile = async (userId) => {
   return data;
 };
 
+const notifyNewClient = async (client) => {
+  try {
+    const { error } = await supabaseClient.functions.invoke("notify-new-client", {
+      body: client,
+    });
+
+    if (error) {
+      console.warn("Não foi possível enviar a notificação de novo cadastro.", error);
+    }
+  } catch (error) {
+    console.warn("Não foi possível enviar a notificação de novo cadastro.", error);
+  }
+};
+
 const redirectIfAlreadyLoggedIn = async () => {
   if (!window.jvsSupabaseReady) {
     showMessage("Configure o Supabase em js/supabase-config.js para ativar o acesso.", "warning");
@@ -166,6 +180,9 @@ registerForm?.addEventListener("submit", async (event) => {
   }
 
   const formData = new FormData(registerForm);
+  const name = String(formData.get("name") || "").trim();
+  const company = String(formData.get("company") || "").trim();
+  const phone = String(formData.get("phone") || "").trim();
   const email = normalizeEmail(String(formData.get("email") || ""));
   const password = String(formData.get("password") || "");
   const passwordConfirm = String(formData.get("passwordConfirm") || "");
@@ -180,9 +197,9 @@ registerForm?.addEventListener("submit", async (event) => {
     password,
     options: {
       data: {
-        name: String(formData.get("name") || "").trim(),
-        company: String(formData.get("company") || "").trim(),
-        phone: String(formData.get("phone") || "").trim(),
+        name,
+        company,
+        phone,
       },
     },
   });
@@ -193,10 +210,12 @@ registerForm?.addEventListener("submit", async (event) => {
   }
 
   if (data.session) {
+    await notifyNewClient({ name, company, phone, email });
     window.location.href = loginRedirectTarget;
     return;
   }
 
+  await notifyNewClient({ name, company, phone, email });
   registerForm.reset();
   showTab("login");
   showMessage("Cadastro criado e acesso liberado. Entre com seu e-mail e senha para acessar os catálogos.", "success");

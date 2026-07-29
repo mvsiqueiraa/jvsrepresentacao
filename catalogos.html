@@ -1,18 +1,25 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Acesse os catálogos digitais de todas as marcas parceiras da J V S Representações. Conteúdo exclusivo para lojistas e construtoras parceiras." />
+    <meta property="og:title" content="Catálogos Digitais | J V S Representações" />
+    <meta property="og:description" content="Acesse os catálogos digitais de todas as marcas parceiras da J V S Representações. Conteúdo exclusivo para lojistas e construtoras parceiras." />
+    <meta property="og:image" content="assets/hero-representante.png" />
+    <meta property="og:type" content="website" />
     <title>Catálogos Digitais | J V S Representações</title>
     <link rel="icon" type="image/svg+xml" href="assets/logo-jvs.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabase-config.js"></script>
-    <script src="js/supabase-client.js"></script>
-    <script src="js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="js/supabase-config.js" defer></script>
+    <script src="js/supabase-client.js" defer></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/client-session.js" defer></script>
+    <script src="js/catalogos.js" defer></script>
   </head>
   <body>
     <header class="site-header" aria-label="Cabeçalho principal">
@@ -75,139 +82,17 @@
             <button class="catalog-filter-button" type="button" data-filter="topmax">Top-Max</button>
           </div>
 
-          <div class="catalog-grid">
-            <article class="catalog-item" data-brand="krona">
-              <span class="catalog-brand">Krona</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-krona.svg" alt="Krona" />
-              </div>
-              <h2>Catálogo de produtos: Tubos e Conexões</h2>
-              <a href="https://drive.google.com/file/d/1MToVAfvnY14avwr6Gyf1FMV9z6dmnk_f/view?usp=drive_link" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="soprano">
-              <span class="catalog-brand">Soprano</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-soprano.svg" alt="Soprano" />
-              </div>
-              <h2>Catálogo de produtos: Utilidades Térmicas</h2>
-              <a href="https://drive.google.com/file/d/1PZhDxpzeDkbTcJ03P4wiAJj9Qav7bbBt/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="soprano">
-              <span class="catalog-brand">Soprano</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-soprano.svg" alt="Soprano" />
-              </div>
-              <h2>Catálogo de produtos: Interruptores e Tomadas</h2>
-              <a href="https://drive.google.com/file/d/1b02PIVx-B59eIG3q8hnKq7otSPQwI_0l/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="soprano">
-              <span class="catalog-brand">Soprano</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-soprano.svg" alt="Soprano" />
-              </div>
-              <h2>Catálogo de produtos: Materiais Elétricos</h2>
-              <a href="https://drive.google.com/file/d/1gCEgQTMy3VONP3VbrmtLr4pvO4xPgqbQ/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="soprano">
-              <span class="catalog-brand">Soprano</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-soprano.svg" alt="Soprano" />
-              </div>
-              <h2>Catálogo de produtos: Fechaduras, Ferragens e Cadeados</h2>
-              <a href="https://drive.google.com/file/d/1gCEgQTMy3VONP3VbrmtLr4pvO4xPgqbQ/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="iberica">
-              <span class="catalog-brand">Ibérica</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-iberica.svg" alt="Ibérica" />
-              </div>
-              <h2>Catálogo de produtos: Condutores Elétricos</h2>
-              <a href="https://drive.google.com/file/d/1ruMqrIpPKTzLDi7COArSujuhVA80rRdJ/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="ciser">
-              <span class="catalog-brand">Ciser</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-ciser.svg" alt="Ciser" />
-              </div>
-              <h2>Catálogo de produtos</h2>
-              <a href="https://drive.google.com/file/d/1by8Hwg7wGg8W778T-irYZhcKmIRmP6HW/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="vonder">
-              <span class="catalog-brand">Vonder</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-vonder.svg" alt="Vonder" />
-              </div>
-              <h2>Catálogo de produtos</h2>
-              <a href="https://www.ovd.com.br/_CATALOGO/vonder/web/" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="viqua">
-              <span class="catalog-brand">Viqua</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-viqua.svg" alt="Viqua" />
-              </div>
-              <h2>Catálogo de produtos: Residencial, Predial e Jardim</h2>
-              <a href="https://drive.google.com/file/d/1ltILg4NwFfD2pMuoa3rvTMd_7NEH9JRH/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="aeroflex">
-              <span class="catalog-brand">Aeroflex</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-aeroflex.svg" alt="Aeroflex" />
-              </div>
-              <h2>Catálogo Técnico Industrial</h2>
-              <a href="https://drive.google.com/file/d/1y7oe3acf1L3Wq2oP2DoHWR2DJ5hFHq0w/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="aeroflex">
-              <span class="catalog-brand">Aeroflex</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-aeroflex.svg" alt="Aeroflex" />
-              </div>
-              <h2>Catálogo Alimentar</h2>
-              <a href="https://drive.google.com/file/d/10xYYKtHrrOXIvXk5Vho29lDEd-BuMeBW/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="elleve">
-              <span class="catalog-brand">Elleve</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-elleve.png" alt="Elleve" />
-              </div>
-              <h2>Catálogo: Escoamento Inteligente</h2>
-              <a href="https://drive.google.com/file/d/1dIFolQQjMMPhucGD8rouxDL62WKASPch/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="novii">
-              <span class="catalog-brand">Novii</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-novii.png" alt="Novii" />
-              </div>
-              <h2>Catálogo Novii</h2>
-              <a href="https://drive.google.com/file/d/1gzjYWXMUNt-Ffv9eovAg-MiUPAbK9acL/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
-
-            <article class="catalog-item" data-brand="topmax">
-              <span class="catalog-brand">Top-Max</span>
-              <div class="catalog-logo">
-                <img src="assets/logo-topmax.png" alt="Top-Max" />
-              </div>
-              <h2>Catálogo: Ralos Modulares</h2>
-              <a href="https://drive.google.com/file/d/1dIFolQQjMMPhucGD8rouxDL62WKASPch/view?usp=sharing" target="_blank" rel="noopener">Abrir catálogo</a>
-            </article>
+          <div class="catalog-grid" id="catalog-grid">
+            <div id="catalog-loading" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+              Carregando catálogos...
+            </div>
+            <div id="catalog-error" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--danger, red);" hidden>
+              Você não tem permissão para visualizar os catálogos.
+            </div>
           </div>
         </div>
       </section>
     </main>
-
-    <script src="js/client-session.js"></script>
-    <script src="js/catalogos.js"></script>
   </body>
 </html>
 
