@@ -38,36 +38,43 @@ const showAdminMessage = (text, type = "error") => {
   adminMessage.hidden = false;
 };
 
-const getCurrentAdminProfile = async () => {
-  const { data: sessionData } = await supabaseClient.auth.getSession();
+const getCurrentAdminProfile = async (userId = "") => {
+  let profileUserId = userId;
 
-  if (!sessionData.session) return null;
+  if (!profileUserId) {
+    const { data: sessionData } = await supabaseClient.auth.getSession();
+    profileUserId = sessionData.session?.user.id || "";
+  }
+
+  if (!profileUserId) return null;
 
   const { data: profile, error } = await supabaseClient
     .from("profiles")
-    .select("id, status, role")
-    .eq("id", sessionData.session.user.id)
+    .select("id, email, status, role")
+    .eq("id", profileUserId)
     .single();
 
-  if (error) return null;
+  if (error) {
+    console.warn("Não foi possível validar o perfil administrativo.", error);
+    return null;
+  }
+
   return profile;
 };
 
-const ensureAdmin = async () => {
+const ensureAdmin = async (userId = "") => {
   if (!window.jvsSupabaseReady) {
     showAdminMessage("Configure o Supabase em js/supabase-config.js para ativar o painel.");
     return false;
   }
 
-  const profile = await getCurrentAdminProfile();
+  const profile = await getCurrentAdminProfile(userId);
 
   if (profile?.role === "admin" && profile?.status === "approved") {
     return true;
   }
 
-  if (profile) {
-    await supabaseClient.auth.signOut();
-  }
+  await supabaseClient.auth.signOut();
 
   return false;
 };
@@ -189,7 +196,7 @@ adminLoginForm?.addEventListener("submit", async (event) => {
   const email = String(formData.get("adminEmail") || "").trim().toLowerCase();
   const password = String(formData.get("adminPassword") || "");
 
-  const { error } = await supabaseClient.auth.signInWithPassword({
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
     email,
     password,
   });
@@ -199,7 +206,7 @@ adminLoginForm?.addEventListener("submit", async (event) => {
     return;
   }
 
-  if (!(await ensureAdmin())) {
+  if (!(await ensureAdmin(data.user?.id))) {
     showAdminMessage("Este usuário não possui permissão administrativa.");
     return;
   }
