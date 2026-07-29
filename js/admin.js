@@ -38,6 +38,20 @@ const showAdminMessage = (text, type = "error") => {
   adminMessage.hidden = false;
 };
 
+const getAdminAuthErrorMessage = (error) => {
+  const message = String(error?.message || "").toLowerCase();
+
+  if (message.includes("email not confirmed")) {
+    return "Este e-mail ainda não está confirmado no Supabase. Confirme o usuário em Authentication > Users.";
+  }
+
+  if (message.includes("invalid login credentials")) {
+    return "E-mail ou senha administrativa incorretos. Confira a senha definida em Authentication > Users.";
+  }
+
+  return `Não foi possível entrar no painel. Detalhe: ${error?.message || "tente novamente."}`;
+};
+
 const getCurrentAdminProfile = async (userId = "") => {
   let profileUserId = userId;
 
@@ -202,7 +216,7 @@ adminLoginForm?.addEventListener("submit", async (event) => {
   });
 
   if (error) {
-    showAdminMessage("E-mail ou senha administrativa incorretos.");
+    showAdminMessage(getAdminAuthErrorMessage(error));
     return;
   }
 
