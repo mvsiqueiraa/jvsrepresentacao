@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Evitar que o Google indexe as páginas de acesso restrito
+Disallow: /admin.html
+Disallow: /login.html
+
+# MAPA DO SITE
+# IMPORTANTE: Troque "www.SEUDOMINIO.com.br" pelo link real do seu site
+Sitemap: https://www.jvsrepresentacoesstm.com.br/sitemap.xml
